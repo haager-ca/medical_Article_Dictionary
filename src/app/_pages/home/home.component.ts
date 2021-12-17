@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Article } from 'src/app/classes/Article';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-home',
@@ -9,19 +10,18 @@ import { Article } from 'src/app/classes/Article';
 })
 export class HomeComponent implements OnInit {
 
+  constructor(private storageService: StorageService) { }
+
   public articleTitle: string = "Anatomie";
   public showAlert: boolean = true;
   public newArticleTitle: string = "";
   public readonly maxTitleLength: number = 20;
   public newAuthor: string = "";
-  public articles: string[] = [
-    "Die drei ???"
-  ]
+  public articles: string[] = [];
 
-
-  constructor() { }
 
   ngOnInit(): void {
+    this.articles = this.storageService.getArticles();
   }
 
   public transformArticleTitle(title: string): string {
@@ -31,7 +31,8 @@ export class HomeComponent implements OnInit {
 
   public addNewArticle() {
     // this.showAlert = !this.showAlert;
-    this.articles.push(this.newArticleTitle)
+    this.articles.push(this.newArticleTitle);
+    this.storageService.setArticles(this.articles);
     this.newArticleTitle = "";
   }
 }
