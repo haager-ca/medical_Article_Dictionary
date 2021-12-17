@@ -1,11 +1,25 @@
-<p>home works!</p>
-
-{{ transformArticleTitle(articleTitle)}}
-
-<div class="alert alert-primary" *ngIf="showAlert">
-    Test Alert
+<div class="mt-2 card">
+    <h3>Artikel hinzufügen</h3>
+    <div class="row">
+        <div class="col-6">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Artikel</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let article of articles">
+                        <td>{{ article }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-6">
+            <input class="form-control" placeholder="Neuer Artikel" [(ngModel)]="newArticleTitle">
+            <input class="mt-2 form-control" placeholder="Autor" [(ngModel)]="newAuthor">
+            <button class="mx-auto b-block mt-2 mb-2 btn btn-outline-primary" (click)="onButtonClicked()">Artikel
+                hinzufügen</button>
+        </div>
+    </div>
 </div>
-
-<ul>
-    <li *ngFor="let article of articles">{{ article }}</li>
-</ul>

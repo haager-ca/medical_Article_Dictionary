@@ -11,8 +11,10 @@ export class HomeComponent implements OnInit {
 
   public articleTitle: string = "Anatomie";
   public showAlert: boolean = true;
+  public newArticleTitle: string = "";
+  public newAuthor: string = "";
   public articles: string[] = [
-    "Die drei ???!"
+    "Die drei ???"
   ]
 
 
