@@ -17,9 +17,20 @@
         </div>
         <div class="col-6">
             <input class="form-control" placeholder="Neuer Artikel" [(ngModel)]="newArticleTitle">
+
             <input class="mt-2 form-control" placeholder="Autor" [(ngModel)]="newAuthor">
-            <button class="mx-auto b-block mt-2 mb-2 btn btn-outline-primary" (click)="onButtonClicked()">Artikel
+
+            <button class="mx-auto b-block mt-2 mb-2 btn btn-outline-primary"
+                [disabled]="newArticleTitle.length >= maxTitleLength" (click)="addNewArticle()">Artikel
                 hinzufügen</button>
+
+            <div [class]="'alert alert-' + (newArticleTitle.length <= maxTitleLength ? 'primary' : 'warning')"
+                *ngIf="newArticleTitle != ''">
+                Ein Artikel mit dem Namen <i>{{ newArticleTitle }}</i> wird erstellt, wenn sie auf den Button
+                klicken.<br>
+                <span *ngIf="newArticleTitle.length > maxTitleLength">Der Titel ist mit {{newArticleTitle.length}}
+                    Zeichen zu lang!</span>
+            </div>
         </div>
     </div>
 </div>

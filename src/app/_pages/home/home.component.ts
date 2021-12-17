@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit {
   public articleTitle: string = "Anatomie";
   public showAlert: boolean = true;
   public newArticleTitle: string = "";
+  public readonly maxTitleLength: number = 20;
   public newAuthor: string = "";
   public articles: string[] = [
     "Die drei ???"
@@ -28,8 +29,9 @@ export class HomeComponent implements OnInit {
 
   }
 
-  public onButtonClicked() {
+  public addNewArticle() {
     // this.showAlert = !this.showAlert;
-    this.articles.push("Artikel NR. " + Math.round(Math.random() * 100))
+    this.articles.push(this.newArticleTitle)
+    this.newArticleTitle = "";
   }
 }
