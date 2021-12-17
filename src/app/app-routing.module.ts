@@ -5,16 +5,16 @@ import { WelcomeComponent } from './_pages/welcome/welcome.component';
 
 const routes: Routes = [
   {
-    path: "/welcome",
+    path: "welcome",
     component: WelcomeComponent,
   },
   {
-    path: "/home",
+    path: "home",
     component: HomeComponent,
   },
   {
     path: "**",
-    redirectTo: "/welcome",
+    redirectTo: "/welcome"
   }
 ];
 
