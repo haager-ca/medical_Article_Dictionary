@@ -8,9 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Clone the code
-      uses: action/checkout@v2
+      uses: actions/checkout@v2
     - name: Setup NodeJS
-      uses: action/setup-node@v1
+      uses: actions/setup-node@v1
       with:
         node-version: 17
     - name: install dependencies
