@@ -42,7 +42,13 @@ export class HomeComponent implements OnInit {
 
   public deleteArticle(article: Article) {
     console.log(article)
-    this.articleTitle
+    this.articles = this.articles.filter(function (a) {
+      if (a.title == article.title) {
+        return false;
+      } else {
+        return true;
+      }
+    });
   }
 
 }
