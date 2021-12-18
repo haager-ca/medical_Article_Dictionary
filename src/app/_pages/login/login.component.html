@@ -1,0 +1,29 @@
+<div class="card">
+    <div class="container">
+        <div class="row">
+            <div class="col-5 mx-auto">
+                <h2>Login</h2>
+
+                <div class="alert alert-danger" *ngIf="formInvalid">
+                    Das Formular ist ungültig, bitte überprüfen Sie Ihre Eingaben nochmals!
+                </div>
+                <div class="alert alert-danger" *ngIf="usernameOrPasswordWrong">
+                    Ihr Benutzername oder ihr Passwort ist falsch.
+                </div>
+
+                <div class="mb-3">
+                    <label for="inputUsername" class="form-label">Benutzername</label>
+                    <input type="text" class="form-control" id="inputUsername" [(ngModel)]="username"
+                        placeholder="Benutzername eingeben">
+                    <div class="form-text">Wir werden ihre Daten vertrauenswürdug behandeln</div>
+                </div>
+                <div class="mb-3">
+                    <label for="inputPassword" class="form-label">Passwort</label>
+                    <input type="password" class="form-control" [(ngModel)]="password" id="inputPassword"
+                        placeholder="Passwort eingeben">
+                </div>
+                <button class="btn btn-primary" (click)="login()">Anmelden</button>
+            </div>
+        </div>
+    </div>
+</div>

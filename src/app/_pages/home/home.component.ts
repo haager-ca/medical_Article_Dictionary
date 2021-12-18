@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { Article } from 'src/app/classes/Article';
-import { StorageService } from 'src/app/services/storage.service';
+import { Article } from 'src/app/_classes/Article';
+import { StorageService } from 'src/app/_services/storage.service';
 
 @Component({
   selector: 'app-home',
