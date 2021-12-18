@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { Article } from 'src/app/_classes/Article';
+import { Article } from 'src/app/_classes/article';
 import { StorageService } from 'src/app/_services/storage.service';
 
 @Component({
@@ -15,9 +15,9 @@ export class HomeComponent implements OnInit {
   public articleTitle: string = "Anatomie";
   public showAlert: boolean = true;
   public newArticleTitle: string = "";
+  public newArticleAuthor: string = "";
   public readonly maxTitleLength: number = 20;
-  public newAuthor: string = "";
-  public articles: string[] = [];
+  public articles: Article[] = [];
 
 
   ngOnInit(): void {
@@ -31,8 +31,18 @@ export class HomeComponent implements OnInit {
 
   public addNewArticle() {
     // this.showAlert = !this.showAlert;
-    this.articles.push(this.newArticleTitle);
+    const article = new Article();
+    article.title = this.newArticleTitle;
+    article.authors = this.newArticleAuthor ? [this.newArticleAuthor] : [];
+    this.articles.push(article);
     this.storageService.setArticles(this.articles);
     this.newArticleTitle = "";
+    this.newArticleAuthor = "";
   }
+
+  public deleteArticle(article: Article) {
+    console.log(article)
+    this.articleTitle
+  }
+
 }
