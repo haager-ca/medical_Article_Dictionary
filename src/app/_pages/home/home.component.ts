@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
   public showAlert: boolean = true;
   public newArticleTitle: string = "";
   public newArticleAuthor: string = "";
+  public isEditing: number = 0;
   public readonly maxTitleLength: number = 20;
   public articles: Article[] = [];
 
@@ -30,14 +31,27 @@ export class HomeComponent implements OnInit {
   }
 
   public addNewArticle() {
-    // this.showAlert = !this.showAlert;
-    const article = new Article();
-    article.title = this.newArticleTitle;
-    article.authors = this.newArticleAuthor ? [this.newArticleAuthor] : [];
-    this.articles.push(article);
-    this.storageService.setArticles(this.articles);
-    this.newArticleTitle = "";
-    this.newArticleAuthor = "";
+    if (this.isEditing) {
+      // Speicher die Änderungen
+      const that = this;
+      this.articles = this.articles.map(function (a) {
+        if (a.id == that.isEditing) {
+          a.title = that.newArticleTitle;
+          a.authors = [that.newArticleTitle]
+        }
+        return a;
+      });
+    } else {    
+      // erstell neues Buch
+      const article = new Article();
+      article.title = this.newArticleTitle;
+      article.id = Math.round(Math.random()*1000000);
+      article.authors = this.newArticleAuthor ? [this.newArticleAuthor] : [];
+      this.articles.push(article);
+      this.storageService.setArticles(this.articles);
+      this.newArticleTitle = "";
+      this.newArticleAuthor = "";
+    }
   }
 
   public deleteArticle(article: Article) {
@@ -49,6 +63,12 @@ export class HomeComponent implements OnInit {
         return true;
       }
     });
+    this.storageService.setArticles(this.articles);
   }
 
+  public editArticle(article: Article) {
+    this.isEditing = article.id;
+    this.newArticleTitle = article.title;
+    this.newArticleAuthor = article.authors.join(", ");
+  }
 }

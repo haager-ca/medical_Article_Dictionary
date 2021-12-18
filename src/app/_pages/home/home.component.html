@@ -16,7 +16,9 @@
                             <td>{{ article.title }}</td>
                             <td>{{ article.authors }}</td>
                             <td>
-                                <button class="btn btn-outline-danger" (click)="deleteArticle(article)">Löschen</button>
+                                <button class="btn btn-outline-primary" (click)="editArticle(article)">Bearbeiten</button>
+                                <button class="ms-2 btn btn-outline-danger" (click)="deleteArticle(article)">Löschen</button>
+
                             </td>
                         </tr>
                     </tbody>
@@ -27,16 +29,11 @@
 
                 <input class="mt-2 form-control" placeholder="Autor" [(ngModel)]="newArticleAuthor">
 
-                <button class="mx-auto b-block mt-2 mb-2 btn btn-outline-primary"
-                    [disabled]="newArticleTitle.length >= maxTitleLength" (click)="addNewArticle()">Artikel
-                    hinzufügen</button>
+                <button class="mx-auto b-block mt-2 mb-2 btn btn-outline-primary" [disabled]="newArticleTitle.length >= maxTitleLength" (click)="addNewArticle()">{{ isEditing ? 'Änderung speichern' : 'Artikel hinzufügen'}}</button>
 
-                <div [class]="'alert alert-' + (newArticleTitle.length <= maxTitleLength ? 'primary' : 'warning')"
-                    *ngIf="newArticleTitle != ''">
-                    Ein Artikel mit dem Namen <i>{{ newArticleTitle }}</i> wird erstellt, wenn sie auf den Button
-                    klicken.<br>
-                    <span *ngIf="newArticleTitle.length > maxTitleLength">Der Titel ist mit {{newArticleTitle.length}}
-                        Zeichen zu lang!</span>
+                <div [class]="'alert alert-' + (newArticleTitle.length <= maxTitleLength ? 'primary' : 'warning')" *ngIf="newArticleTitle != ''">
+                    <span *ngIf="newArticleTitle.length <= maxTitleLength">Ein Artikel mit dem Namen <i>{{ newArticleTitle }}</i> wird erstellt, wenn sie auf den Button klicken.<br></span>
+                    <span *ngIf="newArticleTitle.length > maxTitleLength">Der Titel ist mit {{newArticleTitle.length}} Zeichen zu lang!</span>
                 </div>
             </div>
         </div>
