@@ -1,0 +1,20 @@
+nam: Build
+
+on: [push]
+
+jobs:
+  build:
+    name: Build my Angular projekt
+    runs-on: ubuntu-latest
+    steps:
+    - name: Clone the code
+      uses: action/checkout@v1
+    - name: Setup NodeJS
+      uses: action/setup-node@v1
+      with:
+        node-version: 17
+    - name: install dependencies
+      run: npm install
+    - name: Build the App
+      run: ng build
+      
