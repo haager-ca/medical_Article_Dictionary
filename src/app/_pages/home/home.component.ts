@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
       this.articles = this.articles.map(function (a) {
         if (a.id == that.isEditing) {
           a.title = that.newArticleTitle;
-          a.authors = [that.newArticleTitle]
+          a.authors = [that.newArticleAuthor]
         }
         return a;
       });
@@ -49,9 +49,9 @@ export class HomeComponent implements OnInit {
       article.authors = this.newArticleAuthor ? [this.newArticleAuthor] : [];
       this.articles.push(article);
       this.storageService.setArticles(this.articles);
-      this.newArticleTitle = "";
-      this.newArticleAuthor = "";
     }
+    this.newArticleTitle = "";
+    this.newArticleAuthor = "";
   }
 
   public deleteArticle(article: Article) {
