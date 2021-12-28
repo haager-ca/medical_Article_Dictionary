@@ -48,10 +48,12 @@ export class HomeComponent implements OnInit {
       article.id = Math.round(Math.random()*1000000);
       article.authors = this.newArticleAuthor ? [this.newArticleAuthor] : [];
       this.articles.push(article);
-      this.storageService.setArticles(this.articles);
     }
     this.newArticleTitle = "";
     this.newArticleAuthor = "";
+    this.isEditing = 0;
+    this.storageService.setArticles(this.articles);
+
   }
 
   public deleteArticle(article: Article) {
