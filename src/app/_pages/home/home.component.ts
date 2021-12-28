@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
       this.articles = this.articles.map(function (a) {
         if (a.id == that.isEditing) {
           a.title = that.newArticleTitle;
-          a.authors = [that.newArticleAuthor]
+          a.authors = that.newArticleAuthor.split(", ")
         }
         return a;
       });
@@ -46,7 +46,8 @@ export class HomeComponent implements OnInit {
       const article = new Article();
       article.title = this.newArticleTitle;
       article.id = Math.round(Math.random()*1000000);
-      article.authors = this.newArticleAuthor ? [this.newArticleAuthor] : [];
+      article.authors = this.newArticleAuthor.split(", ");
+      article.publishDate = new Date;
       this.articles.push(article);
     }
     this.newArticleTitle = "";

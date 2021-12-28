@@ -8,6 +8,7 @@
                         <tr>
                             <th>Titel</th>
                             <th>Autor(en)</th>
+                            <th>Veröffentlicht am</th>
                             <th>Aktionen</th>
                         </tr>
                     </thead>
@@ -15,9 +16,10 @@
                         <tr *ngFor="let article of articles">
                             <td>{{ article.title }}</td>
                             <td>{{ article.authors }}</td>
+                            <td>{{ article.publishDate | date: 'mediumDate'}} {{ article.publishDate | date: 'mediumTime'}}</td>
                             <td>
                                 <button class="btn btn-outline-primary" (click)="editArticle(article)">Bearbeiten</button>
-                                <button class=" ms-2 btn btn-outline-danger" (click)="deleteArticle(article)">Löschen</button>
+                                <button class="mt-2 btn btn-outline-danger" (click)="deleteArticle(article)">Löschen</button>
 
                             </td>
                         </tr>

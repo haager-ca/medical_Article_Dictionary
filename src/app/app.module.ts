@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -9,6 +9,12 @@ import { NavbarComponent } from './_components/navbar/navbar.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './_pages/login/login.component';
+import { registerLocaleData } from '@angular/common';
+
+import localeDe from '@angular/common/locales/de';
+import localeDeExtra from '@angular/common/locales/extra/de';
+import { JoinAuthorsPipe } from './_pipes/join-authors.pipe';
+registerLocaleData(localeDe, "de-DE", localeDeExtra);
 
 @NgModule({
   declarations: [
@@ -16,7 +22,8 @@ import { LoginComponent } from './_pages/login/login.component';
     WelcomeComponent,
     HomeComponent,
     NavbarComponent,
-    LoginComponent
+    LoginComponent,
+    JoinAuthorsPipe
   ],
   imports: [
     BrowserModule,
@@ -24,7 +31,10 @@ import { LoginComponent } from './_pages/login/login.component';
     FormsModule,
     CommonModule
   ],
-  providers: [],
+  providers: [{
+    provide: LOCALE_ID,
+    useValue: 'de-DE',
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
