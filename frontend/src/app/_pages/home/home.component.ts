@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Article } from 'src/app/_classes/article';
 import { StorageService } from 'src/app/_services/storage.service';
 
@@ -10,7 +10,7 @@ import { StorageService } from 'src/app/_services/storage.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private storageService: StorageService) { }
+  constructor(private storageService: StorageService, private formBuilder: FormBuilder) { }
 
   public articleTitle: string = "Anatomie";
   public showAlert: boolean = true;
@@ -19,10 +19,15 @@ export class HomeComponent implements OnInit {
   public isEditing: number = 0;
   public readonly maxTitleLength: number = 20;
   public articles: Article[] = [];
+  public newArticleForm: FormGroup | undefined;
 
 
   ngOnInit(): void {
     this.articles = this.storageService.getArticles();
+    this.newArticleForm = this.formBuilder.group({
+      title: new FormControl("", [Validators.required, Validators.minLength(4)]),
+      author: new FormControl("", [Validators.required, Validators.minLength(4)])
+    })
   }
 
   public transformArticleTitle(title: string): string {

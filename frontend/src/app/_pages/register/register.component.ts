@@ -7,9 +7,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterComponent implements OnInit {
 
+  public name: string = "";
+  public username: string = "";
+  public password: string = "";
+  public password2: string = "";
+  public formInValid: boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  public addNewUser() {
+    if(this.name && this.username && this.password && this.password2) {
+      this.formInValid = false;
+
+    } else {
+      this.formInValid = true;
+    }
   }
 
 }
