@@ -8,7 +8,7 @@ export class AuthenticationService {
   private isLoggedIn: boolean = false;
 
   public login(username: string, password: string): boolean {
-    if (username == "test" && password == "cool") {
+    if (username == "typical username" && password == "typical password") {
       this.isLoggedIn = true;
       return true;
     } else {
